@@ -2,11 +2,11 @@
 TARGET = $(notdir $(CURDIR))
 
 # The teensy version to use, 30, 31, 35, 36, or LC
-TEENSY = 36
+TEENSY = 31
 
 # Set to 24000000, 48000000, or 96000000 to set CPU core speed
-#TEENSY_CORE_SPEED = 48000000
-TEENSY_CORE_SPEED = 180000000
+TEENSY_CORE_SPEED = 72000000
+#TEENSY_CORE_SPEED = 180000000
 
 # Some libraries will require this to be defined
 # If you define this, you will break the default main.cpp
@@ -70,13 +70,13 @@ LIBS = -lm
 
 # compiler options specific to teensy version
 ifeq ($(TEENSY), 30)
-    CPPFLAGS += -D__MK20DX128__ -mcpu=cortex-m4
+    CPPFLAGS += -D__MK20DX128__ -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard
     LDSCRIPT = $(COREPATH)/mk20dx128.ld
-    LDFLAGS += -mcpu=cortex-m4 -T$(LDSCRIPT)
+    LDFLAGS += -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -T$(LDSCRIPT)
 else ifeq ($(TEENSY), 31)
-    CPPFLAGS += -D__MK20DX256__ -mcpu=cortex-m4
+    CPPFLAGS += -D__MK20DX256__ -mcpu=cortex-m4 -mfpu=fpv4-sp-d16 -mfloat-abi=hard
     LDSCRIPT = $(COREPATH)/mk20dx256.ld
-    LDFLAGS += -mcpu=cortex-m4 -T$(LDSCRIPT)
+    LDFLAGS += -mcpu=cortex-m4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 -T$(LDSCRIPT)
 else ifeq ($(TEENSY), LC)
     CPPFLAGS += -D__MKL26Z64__ -mcpu=cortex-m0plus
     LDSCRIPT = $(COREPATH)/mkl26z64.ld

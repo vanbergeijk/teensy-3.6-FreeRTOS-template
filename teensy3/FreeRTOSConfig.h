@@ -70,7 +70,6 @@
 
 #ifndef FREERTOS_CONFIG_H
 #define FREERTOS_CONFIG_H
-
 #ifdef __cplusplus
 extern "C" {
 #endif
@@ -143,7 +142,8 @@ the comments at the top of main.c for more information. */
 #define configUSE_APPLICATION_TASK_TAG			0
 #define configUSE_COUNTING_SEMAPHORES			1
 #define configSUPPORT_STATIC_ALLOCATION			0    // change from 0
-
+#define configENFORCE_SYSTEM_CALLS_FROM_KERNEL_ONLY     1
+  
 /* Run time stats gathering definitions. */
 #define configGENERATE_RUN_TIME_STATS	0
 #define portCONFIGURE_TIMER_FOR_RUN_TIME_STATS()
@@ -222,3 +222,4 @@ number of times the LED would otherwise have been toggled. */
 }
 #endif
 #endif /* FREERTOS_CONFIG_H */
+
